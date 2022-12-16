@@ -30,7 +30,23 @@ class DbOperation
         if($stmt->execute())
         return true; 
         return false; 
+        
     }
+
+
+  /*
+    * The create operation
+    * When this method is called a new record of new Attended created in the database
+    */
+    function newAttendee($name,$email)
+    {
+        $stmt = $this->con->prepare("INSERT INTO audiences (StudentID,College) VALUES (?,?)");
+        $stmt->bind_param("ss",$name,$email);
+        if($stmt->execute())
+        return true; 
+        return false; 
+    }
+
     
     /*
     * The read operation
@@ -40,7 +56,7 @@ class DbOperation
     {
         $stmt = $this->con->prepare("SELECT id, Name, StudentID, Email, College, qrcode FROM audiences");
         $stmt->execute();
-        $stmt->bind_result($id, $name, $studentId, $email, $college, $qrcode,);
+        $stmt->bind_result($id, $name, $studentId, $email, $college, $qrcode);
         
         $audiences = array(); 
         
