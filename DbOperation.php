@@ -40,7 +40,7 @@ class DbOperation
     */
     function newAttendee($name,$email)
     {
-        $stmt = $this->con->prepare("INSERT INTO audiences (Name,Email) VALUES (?,?)");
+        $stmt = $this->con->prepare("INSERT INTO audiences (StudentID,College) VALUES (?,?)");
         $stmt->bind_param("ss",$name,$email);
         if($stmt->execute())
         return true; 
@@ -56,7 +56,7 @@ class DbOperation
     {
         $stmt = $this->con->prepare("SELECT id, Name, StudentID, Email, College, qrcode FROM audiences");
         $stmt->execute();
-        $stmt->bind_result($id, $name, $studentId, $email, $college, $qrcode,);
+        $stmt->bind_result($id, $name, $studentId, $email, $college, $qrcode);
         
         $audiences = array(); 
         

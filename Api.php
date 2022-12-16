@@ -84,17 +84,17 @@
 
     //create new Attendee
 
-    case 'createNewAttendee':
+    case 'newAttendee':
         //first check the parameters required for this request are available or not 
-        isTheseParametersAvailable(array('Name','Email'));
+        isTheseParametersAvailable(array('name','email'));
         
         //creating a new dboperation object
         $db = new DbOperation();
         
         //creating a new record in the database
         $result = $db->newAttendee(
-            $_POST['Name'],
-            $_POST['Email'],
+            $_POST['name'],
+            $_POST['email'],
     
         );
         
