@@ -95,6 +95,7 @@
         $result = $db->newAttendee(
             $_POST['Name'],
             $_POST['Email'],
+    
         );
         
         

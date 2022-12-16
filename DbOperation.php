@@ -41,7 +41,7 @@ class DbOperation
     function newAttendee($name,$email)
     {
         $stmt = $this->con->prepare("INSERT INTO audiences (Name,Email) VALUES (?,?)");
-        $stmt->bind_param("ss",$name,$email,"VIP");
+        $stmt->bind_param("ss",$name,$email);
         if($stmt->execute())
         return true; 
         return false; 
