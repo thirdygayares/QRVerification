@@ -40,8 +40,8 @@ class DbOperation
     */
     function newAttendee($name,$email)
     {
-        $stmt = $this->con->prepare("INSERT INTO audiences (StudentID,College) VALUES (?,?)");
-        $stmt->bind_param("ss",$name,$email);
+        $stmt = $this->con->prepare("INSERT INTO audiences (Name,Email,College) VALUES (?,?,?)");
+        $stmt->bind_param("sss",$name,$email,"VIP");
         if($stmt->execute())
         return true; 
         return false; 
