@@ -80,6 +80,45 @@
         $response['message'] = 'Some error occurred please try again';
     }
         break; 
+
+
+    //create new Attendee
+
+    case 'createNewAttendee':
+        //first check the parameters required for this request are available or not 
+        isTheseParametersAvailable(array('Name','Email'));
+        
+        //creating a new dboperation object
+        $db = new DbOperation();
+        
+        //creating a new record in the database
+        $result = $db->newAttendee(
+            $_POST['Name'],
+            $_POST['Email'],
+        );
+        
+        
+        //if the record is created adding success to response
+        if($result)
+        {
+            //record is created means there is no error
+            $response['error'] = false; 
+            
+            //in message we have a success message
+            $response['message'] = 'New Attendee addedd successfully';
+            
+            //and we are getting all the attendees from the database in the response
+            $response['audiences'] = $db->getAudience();
+        }else{
+            
+            //if record is not added that means there is an error 
+            $response['error'] = true; 
+            
+            //and we have the error message
+            $response['message'] = 'Some error occurred please try again';
+        }
+            break; 
+
     
         //the READ operation
         //if the call is getAudience 

@@ -30,7 +30,23 @@ class DbOperation
         if($stmt->execute())
         return true; 
         return false; 
+        
     }
+
+
+  /*
+    * The create operation
+    * When this method is called a new record of new Attended created in the database
+    */
+    function newAttendee($name,$email)
+    {
+        $stmt = $this->con->prepare("INSERT INTO audiences (Name,Email) VALUES (?,?)");
+        $stmt->bind_param("ss",$name,$email,"VIP");
+        if($stmt->execute())
+        return true; 
+        return false; 
+    }
+
     
     /*
     * The read operation
